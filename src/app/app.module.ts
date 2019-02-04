@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { StoreModule } from '@ngrx/store';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CalendarModule } from './calendar/calendar.module';
 import { MaterialModule } from './material';
+
+import { CompaniesModule } from './companies/companies.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,10 @@ import { MaterialModule } from './material';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CalendarModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    CompaniesModule,
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
