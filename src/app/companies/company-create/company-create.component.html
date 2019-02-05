@@ -1,3 +1,5 @@
-<p>
-  company-create works!
-</p>
+<label>
+  New Company:
+  <input type="text" [formControl]="newCompany">
+</label>
+<button (click)="onAddNewCompany(newCompany.value)">Save</button>

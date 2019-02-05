@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { StoreModule } from '@ngrx/store';
 
@@ -11,7 +13,8 @@ import { reducer } from './state/company.reducer';
     CompanyCreateComponent
   ],
   imports: [
-    StoreModule.forFeature('companies', reducer)
+    StoreModule.forFeature('companies', reducer),
+    ReactiveFormsModule
   ],
   exports: [
     CompanyCreateComponent
