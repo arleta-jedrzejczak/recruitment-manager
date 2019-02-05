@@ -8,13 +8,17 @@ import { CompanyCreateComponent } from './company-create/company-create.componen
 
 import { reducer } from './state/company.reducer';
 
+// FIXME: Add to shared module
+import { MaterialModule } from '.././material';
+
 @NgModule({
   declarations: [
     CompanyCreateComponent
   ],
   imports: [
     StoreModule.forFeature('companies', reducer),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     CompanyCreateComponent

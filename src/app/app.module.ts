@@ -6,6 +6,8 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// FIXME: Add to shared module
 import { MaterialModule } from './material';
 
 import { CompaniesModule } from './companies/companies.module';

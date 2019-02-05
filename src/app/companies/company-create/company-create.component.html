@@ -1,5 +1,18 @@
-<label>
-  New Company:
-  <input type="text" [formControl]="newCompany">
-</label>
-<button (click)="onAddNewCompany(newCompany.value)">Save</button>
+<form class="company-form" [formGroup]="companysForm">
+  <mat-card>
+    <mat-form-field class="company-full-width">
+      <input matInput
+             placeholder="Company's name"
+             type="text"
+             formControlName="newCompanyName">
+    </mat-form-field>
+    <mat-form-field class="company-full-width">
+      <textarea matInput
+                placeholder="Company's description"
+                formControlName="newCompanyDescription"></textarea>
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            (click)="onAddNewCompany(newCompany.value)">Save</button>
+  </mat-card>
+</form>

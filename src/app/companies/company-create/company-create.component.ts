@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
 
@@ -16,7 +16,10 @@ import { Subscription } from 'rxjs';
 export class CompanyCreateComponent implements OnInit, OnDestroy {
 
   // FIXME: add interface and strongly typing to newCompany
-  newCompany: any = new FormControl('');
+  companysForm = new FormGroup({
+    newCompanyName: new FormControl(''),
+    newCompanyDescription: new FormControl(''),
+  });
   onSubscriptionNewCompany: Subscription;
 
   constructor(private store: Store<any>) { }
@@ -24,10 +27,10 @@ export class CompanyCreateComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  onAddNewCompany(company: any): void {
+  onAddNewCompany(companyName: string, companyDescription: string): void {
     this.store.dispatch({
       type: 'ADD_NEW_COMAPNY',
-      payload: company
+      payload: {companyName, companyDescription}
     });
     this.onSubscriptionNewCompany = this.store.pipe(select('companies')).subscribe(
       (com: any) => {
