@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+import { CompanyInterface } from '../company.interface';
+
 import { Store, select } from '@ngrx/store';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
@@ -22,18 +24,18 @@ export class CompanyCreateComponent implements OnInit, OnDestroy {
   });
   onSubscriptionNewCompany: Subscription;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<CompanyInterface[]>) { }
 
   ngOnInit() {
   }
 
-  onAddNewCompany(companyName: string, companyDescription: string): void {
+  onAddNewCompany(company: CompanyInterface): void {
     this.store.dispatch({
       type: 'ADD_NEW_COMAPNY',
-      payload: {companyName, companyDescription}
+      payload: company
     });
     this.onSubscriptionNewCompany = this.store.pipe(select('companies')).subscribe(
-      (com: any) => {
+      (com: CompanyInterface[]) => {
         console.log(com);
       }
     );
