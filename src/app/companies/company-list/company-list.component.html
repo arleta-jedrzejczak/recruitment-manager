@@ -1,14 +1,15 @@
-<div *ngIf="companies" class="company-list">
-  <div *ngFor="let company of companies; let i = index; trackBy: trackElement" class="company-item">
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          {{ company.companyName }}
-        </mat-expansion-panel-header>
-        <p>
-          {{ company.companyDescription }}
-        </p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-</div>
+<mat-accordion *ngIf="companies.length; else noCompanies"
+               multi="true">
+  <mat-expansion-panel *ngFor="let company of companies; let i = index; trackBy: trackElement">
+    <mat-expansion-panel-header>
+      {{ company.companyName }}
+    </mat-expansion-panel-header>
+    <p>
+      {{ company.companyDescription }}
+    </p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #noCompanies>
+  <mat-card>There is no companies yet!</mat-card>
+</ng-template>
