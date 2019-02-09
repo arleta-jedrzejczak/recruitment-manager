@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,6 +14,8 @@ import { MaterialModule } from './material';
 
 import { CompaniesModule } from './companies/companies.module';
 import { CoreModule } from './core/core.module';
+
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,12 @@ import { CoreModule } from './core/core.module';
     MaterialModule,
     CompaniesModule,
     CoreModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'Recruitment Manager Devtools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

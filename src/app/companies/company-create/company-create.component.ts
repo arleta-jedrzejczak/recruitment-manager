@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { CompanyInterface } from '../company.interface';
-
 import { Store } from '@ngrx/store';
 
 import * as fromCompany from '../state/company.reducer';
+import * as productActions from '../state/company.actions';
 
 @Component({
   selector: 'app-company-create',
@@ -26,10 +25,7 @@ export class CompanyCreateComponent implements OnInit {
   }
 
   onAddNewCompany(): void {
-    this.store.dispatch({
-      type: 'ADD_NEW_COMAPNY',
-      payload: company
-    });
+    this.store.dispatch(new productActions.AddNewCompany(this.companysForm.value));
   }
 
 }
