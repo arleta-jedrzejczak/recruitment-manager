@@ -4,23 +4,25 @@ import {
   MatCheckboxModule,
   MatInputModule,
   MatCardModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatExpansionModule
 } from '@angular/material';
+
+const MODULES = [
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatExpansionModule
+];
 
 @NgModule({
   imports: [
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatCardModule,
-    MatToolbarModule
+    ...MODULES
   ],
   exports: [
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatCardModule,
-    MatToolbarModule
+    ...MODULES
   ],
 })
 export class MaterialModule { }

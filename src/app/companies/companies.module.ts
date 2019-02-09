@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { StoreModule } from '@ngrx/store';
 
 import { CompanyCreateComponent } from './company-create/company-create.component';
+import { CompanyListComponent } from './company-list/company-list.component';
+
 
 import { reducer } from './state/company.reducer';
 
@@ -12,15 +15,18 @@ import { MaterialModule } from '.././material';
 
 @NgModule({
   declarations: [
-    CompanyCreateComponent
+    CompanyCreateComponent,
+    CompanyListComponent
   ],
   imports: [
     StoreModule.forFeature('companies', reducer),
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    BrowserModule
   ],
   exports: [
-    CompanyCreateComponent
+    CompanyCreateComponent,
+    CompanyListComponent
   ],
   providers: []
 })
