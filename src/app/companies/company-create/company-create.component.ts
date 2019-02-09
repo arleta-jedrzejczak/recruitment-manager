@@ -15,8 +15,8 @@ import * as fromCompany from '../state/company.reducer';
 export class CompanyCreateComponent {
 
   companysForm = new FormGroup({
-    newCompanyName: new FormControl(''),
-    newCompanyDescription: new FormControl(''),
+    companyName: new FormControl(''),
+    companyDescription: new FormControl(''),
   });
 
   constructor(private store: Store<fromCompany.State>) { }

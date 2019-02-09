@@ -1,12 +1,12 @@
-<div *ngIf="companies">
-  <div *ngFor="let company of companies; let i = index; trackBy: trackElement">
+<div *ngIf="companies" class="company-list">
+  <div *ngFor="let company of companies; let i = index; trackBy: trackElement" class="company-item">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          {{ company.name }}
+          {{ company.companyName }}
         </mat-expansion-panel-header>
         <p>
-          {{ company.description }}
+          {{ company.companyDescription }}
         </p>
       </mat-expansion-panel>
     </mat-accordion>

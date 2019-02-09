@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import * as fromCompany from '../state/company.reducer';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+
 import { CompanyInterface } from '../company.interface';
 
 @AutoUnsubscribe()
@@ -26,7 +27,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
     this.onSubscriptionNewCompany = this.store.pipe(select('companies')).subscribe(
       (companies: fromCompany.CompanyState) => {
         if (companies) {
-          console.log(companies.companies);
+          this.companies = companies.companies;
         }
       }
     );

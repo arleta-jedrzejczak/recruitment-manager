@@ -11,12 +11,17 @@ export interface CompanyState {
   companies: CompanyInterface[];
 }
 
-export function reducer(state: CompanyState, action): CompanyState {
+const initialState: CompanyState = {
+  currentCompany: null,
+  companies: []
+};
+
+export function reducer(state = initialState, action): CompanyState {
   switch (action.type) {
     case 'ADD_NEW_COMAPNY':
       return {
         ...state,
-        companies: action.payload
+        companies: [...state.companies, action.payload]
       };
     default:
       return state;
