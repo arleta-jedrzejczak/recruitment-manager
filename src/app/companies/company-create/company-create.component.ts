@@ -19,7 +19,6 @@ import * as fromCompany from '../state/company.reducer';
 })
 export class CompanyCreateComponent implements OnInit, OnDestroy {
 
-  // FIXME: add interface and strongly typing to newCompany
   companysForm = new FormGroup({
     newCompanyName: new FormControl(''),
     newCompanyDescription: new FormControl(''),
