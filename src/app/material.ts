@@ -3,7 +3,8 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatInputModule,
-  MatCardModule
+  MatCardModule,
+  MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -11,13 +12,15 @@ import {
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule
   ],
   exports: [
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule
   ],
 })
 export class MaterialModule { }

@@ -5,12 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
 // FIXME: Add to shared module
 import { MaterialModule } from './material';
 
 import { CompaniesModule } from './companies/companies.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { CompaniesModule } from './companies/companies.module';
     BrowserAnimationsModule,
     MaterialModule,
     CompaniesModule,
+    CoreModule,
     StoreModule.forRoot({})
   ],
   providers: [],

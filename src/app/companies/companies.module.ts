@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { StoreModule } from '@ngrx/store';
 
 import { CompanyCreateComponent } from './company-create/company-create.component';
