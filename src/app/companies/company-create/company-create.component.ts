@@ -9,6 +9,8 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { Subscription } from 'rxjs';
 
+import * as fromCompany from '../state/company.reducer';
+
 @AutoUnsubscribe()
 @Component({
   selector: 'app-company-create',
@@ -24,7 +26,7 @@ export class CompanyCreateComponent implements OnInit, OnDestroy {
   });
   onSubscriptionNewCompany: Subscription;
 
-  constructor(private store: Store<CompanyInterface[]>) { }
+  constructor(private store: Store<fromCompany.State>) { }
 
   ngOnInit() {
   }
@@ -35,8 +37,8 @@ export class CompanyCreateComponent implements OnInit, OnDestroy {
       payload: company
     });
     this.onSubscriptionNewCompany = this.store.pipe(select('companies')).subscribe(
-      (com: CompanyInterface[]) => {
-        console.log(com);
+      (companies: fromCompany.CompanyState) => {
+        console.log(companies);
       }
     );
   }
