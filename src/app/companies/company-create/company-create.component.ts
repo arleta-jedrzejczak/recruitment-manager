@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CompanyInterface } from '../company.interface';
 
@@ -12,16 +12,20 @@ import * as fromCompany from '../state/company.reducer';
   templateUrl: './company-create.component.html',
   styleUrls: ['./company-create.component.scss']
 })
-export class CompanyCreateComponent {
+export class CompanyCreateComponent implements OnInit {
 
-  companysForm = new FormGroup({
-    companyName: new FormControl(''),
-    companyDescription: new FormControl(''),
-  });
+  companysForm: FormGroup;
 
   constructor(private store: Store<fromCompany.State>) { }
 
-  onAddNewCompany(company: CompanyInterface): void {
+  ngOnInit(): void {
+    this.companysForm = new FormGroup({
+      'companyName': new FormControl(null, Validators.required),
+      'companyDescription': new FormControl(null, Validators.required),
+    });
+  }
+
+  onAddNewCompany(): void {
     this.store.dispatch({
       type: 'ADD_NEW_COMAPNY',
       payload: company

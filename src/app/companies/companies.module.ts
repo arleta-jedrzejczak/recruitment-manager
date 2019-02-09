@@ -7,7 +7,6 @@ import { StoreModule } from '@ngrx/store';
 import { CompanyCreateComponent } from './company-create/company-create.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 
-
 import { reducer } from './state/company.reducer';
 
 // FIXME: Add to shared module
