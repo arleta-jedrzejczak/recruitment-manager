@@ -16,6 +16,7 @@
     </mat-form-field>
     <button mat-raised-button
             color="accent"
-            type="submit">Save</button>
+            type="submit"
+            [disabled]='!companysForm.valid'>Save</button>
   </form>
 </mat-card>

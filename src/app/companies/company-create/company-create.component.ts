@@ -26,6 +26,7 @@ export class CompanyCreateComponent implements OnInit {
 
   onAddNewCompany(): void {
     this.store.dispatch(new productActions.AddNewCompany(this.companysForm.value));
+    // TODO: Add clearing values after add new company without validation conflict
   }
 
 }
