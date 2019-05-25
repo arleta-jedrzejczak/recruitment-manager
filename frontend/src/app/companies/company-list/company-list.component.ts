@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import * as fromCompany from '../state/company.reducer';
+import * as companiesActions from '../state/company.actions';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
@@ -18,19 +19,15 @@ import { CompanyInterface } from '../company.interface';
 })
 export class CompanyListComponent implements OnInit, OnDestroy {
 
+  companies$: Observable<CompanyInterface[]>;
   companies: CompanyInterface[];
-  onSubscriptionNewCompany: Subscription;
 
   constructor(private store: Store<fromCompany.State>) { }
 
   ngOnInit(): void {
-    this.onSubscriptionNewCompany = this.store.pipe(select('companies')).subscribe(
-      (companies: fromCompany.CompanyState) => {
-        if (companies) {
-          this.companies = companies.companies;
-        }
-      }
-    );
+    this.companies$ = this.store.pipe(select(fromCompany.getCompanies)) as Observable<CompanyInterface[]>;
+    this.store.dispatch(new companiesActions.Load());
+    this.companies$.subscribe((val: CompanyInterface[]) => this.companies = val);
   }
 
   // ngOnDestroy method must be present, even if empty for AutoUnsubscribe
