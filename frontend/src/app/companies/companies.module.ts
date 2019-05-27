@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { CompanyCreateComponent } from './company-create/company-create.component';
 import { CompanyListComponent } from './company-list/company-list.component';
+
+import { CompaniesEffects } from './state/companies.effects';
 
 import { reducer } from './state/company.reducer';
 
@@ -21,7 +25,9 @@ import { MaterialModule } from '.././material';
     StoreModule.forFeature('companies', reducer),
     ReactiveFormsModule,
     MaterialModule,
-    BrowserModule
+    BrowserModule,
+    EffectsModule.forFeature([CompaniesEffects]),
+    HttpClientModule
   ],
   exports: [
     CompanyCreateComponent,

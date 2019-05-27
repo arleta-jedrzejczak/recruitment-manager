@@ -2,10 +2,10 @@
                multi="true">
   <mat-expansion-panel *ngFor="let company of companies; let i = index; trackBy: trackElement">
     <mat-expansion-panel-header>
-      {{ company.companyName }}
+      {{ company.name }}
     </mat-expansion-panel-header>
     <p>
-      {{ company.companyDescription }}
+      {{ company.description }}
     </p>
     <mat-action-row>
       <button mat-button
