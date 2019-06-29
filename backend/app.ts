@@ -1,8 +1,12 @@
-import { Express, NextFunction, Request, Response } from 'express';
 import express = require('express');
+import bodyParser = require('body-parser');
+
+import { Express, NextFunction, Request, Response } from 'express';
 import { CompanyModel }                             from './src/core/models/company.model';
 
 const app: Express = express();
+
+app.use(bodyParser.json());
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,7 +15,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-app.use('/api/companies', (req: Request, res: Response, next: NextFunction) => {
+app.post('/api/companies', (req: Request, res: Response, next: NextFunction) => {
+    const company: CompanyModel = req.body;
+    res.status(200).json(company);
+});
+
+app.get('/api/companies', (req: Request, res: Response, next: NextFunction) => {
 
     let testCompanies: CompanyModel[] = [
         {

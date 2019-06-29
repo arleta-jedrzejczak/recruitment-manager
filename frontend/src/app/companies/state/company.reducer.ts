@@ -31,11 +31,17 @@ export const getCompanies = createSelector(
 
 export function reducer(state = initialState, action: CompanyActions): CompanyState {
   switch (action.type) {
-    case CompanyActionTypes.AddNewCompany:
+    case CompanyActionTypes.CreateCompanySuccess:
       return {
         ...state,
         companies: [...state.companies, {...action.payload}]
       };
+    case CompanyActionTypes.CreateCompanyFail:
+      return {
+        ...state,
+        error: action.payload
+      };
+
     case CompanyActionTypes.LoadSuccess:
       return {
         ...state,

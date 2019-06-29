@@ -13,19 +13,19 @@ import * as productActions from '../state/company.actions';
 })
 export class CompanyCreateComponent implements OnInit {
 
-  companysForm: FormGroup;
+  companiesForm: FormGroup;
 
   constructor(private store: Store<fromCompany.State>) { }
 
   ngOnInit(): void {
-    this.companysForm = new FormGroup({
+    this.companiesForm = new FormGroup({
       'companyName': new FormControl(null, Validators.required),
       'companyDescription': new FormControl(null, Validators.required),
     });
   }
 
   onAddNewCompany(): void {
-    this.store.dispatch(new productActions.AddNewCompany(this.companysForm.value));
+    this.store.dispatch(new productActions.CreateNewCompany(this.companiesForm.value));
     // TODO: Add clearing values after add new company without validation conflict
   }
 

@@ -1,22 +1,22 @@
 <mat-card class="company-form">
-  <form [formGroup]="companysForm"
+  <form [formGroup]="companiesForm"
         (ngSubmit)="onAddNewCompany()">
     <mat-form-field class="company-full-width">
       <input matInput
              placeholder="Company's name"
              type="text"
              [formControlName]="'companyName'">
-      <mat-error *ngIf="!companysForm.get('companyName').valid">Please enter a company name.</mat-error>
+      <mat-error *ngIf="!companiesForm.get('companyName').valid">Please enter a company name.</mat-error>
     </mat-form-field>
     <mat-form-field class="company-full-width">
       <textarea matInput
                 placeholder="Company's description"
                 [formControlName]="'companyDescription'"></textarea>
-      <mat-error *ngIf="!companysForm.get('companyDescription').valid">Please enter a company description.</mat-error>
+      <mat-error *ngIf="!companiesForm.get('companyDescription').valid">Please enter a company description.</mat-error>
     </mat-form-field>
     <button mat-raised-button
             color="accent"
             type="submit"
-            [disabled]='!companysForm.valid'>Save</button>
+            [disabled]='!companiesForm.valid'>Save</button>
   </form>
 </mat-card>

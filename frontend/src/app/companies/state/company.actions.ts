@@ -3,16 +3,28 @@ import { Action } from '@ngrx/store';
 import { CompanyInterface } from '../company.interface';
 
 export enum CompanyActionTypes {
-  AddNewCompany = '[Company] Add New Company',
+  CreateNewCompany = '[Company] Create New Company',
+  CreateCompanySuccess = '[Company] Create Company Success',
+  CreateCompanyFail = '[Company] Create Company Fail',
+
   Load = '[Company] Load Companies',
   LoadSuccess = '[Company] Load Companies Success',
   LoadFail = '[Company] Load Companies Fails'
 }
 
-export class AddNewCompany implements Action {
-  readonly type = CompanyActionTypes.AddNewCompany;
-
+export class CreateNewCompany implements Action {
+  readonly type = CompanyActionTypes.CreateNewCompany;
   constructor(public payload: CompanyInterface) { }
+}
+
+export class CreateCompanySuccess implements Action {
+  readonly type = CompanyActionTypes.CreateCompanySuccess;
+  constructor(public payload: CompanyInterface) { }
+}
+
+export class CreateCompanyFail implements Action {
+  readonly type = CompanyActionTypes.CreateCompanyFail;
+  constructor(public payload: string) { }
 }
 
 export class Load implements Action {
@@ -21,17 +33,17 @@ export class Load implements Action {
 
 export class LoadSuccess implements Action {
   readonly type = CompanyActionTypes.LoadSuccess;
-
   constructor(public payload: CompanyInterface[]) { }
 }
 
 export class LoadFail implements Action {
   readonly type = CompanyActionTypes.LoadFail;
-
   constructor(public payload: string) { }
 }
 
-export type CompanyActions = AddNewCompany |
+export type CompanyActions = CreateNewCompany |
+                             CreateCompanySuccess |
+                             CreateCompanyFail |
                              Load |
                              LoadSuccess |
                              LoadFail;
