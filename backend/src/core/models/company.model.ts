@@ -1,4 +1,4 @@
 export interface CompanyModel {
-    name: string;
-    description: string;
+    companyName: string;
+    companyDescription: string;
 }
