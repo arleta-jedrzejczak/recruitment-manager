@@ -27,7 +27,13 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.companies$ = this.store.pipe(select(fromCompany.getCompanies)) as Observable<CompanyInterface[]>;
     this.store.dispatch(new companiesActions.Load());
-    this.companies$.subscribe((val: CompanyInterface[]) => this.companies = val);
+    this.companies$.subscribe((companiesList: CompanyInterface[]) => {
+      this.companies = companiesList;
+    });
+  }
+
+  onDeleteCompany(id: string): void {
+    this.store.dispatch(new companiesActions.DeleteCompany(id));
   }
 
   // ngOnDestroy method must be present, even if empty for AutoUnsubscribe

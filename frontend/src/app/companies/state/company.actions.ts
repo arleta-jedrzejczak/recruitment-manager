@@ -9,7 +9,11 @@ export enum CompanyActionTypes {
 
   Load = '[Company] Load Companies',
   LoadSuccess = '[Company] Load Companies Success',
-  LoadFail = '[Company] Load Companies Fails'
+  LoadFail = '[Company] Load Companies Fails',
+
+  DeleteCompany = '[Company] Delete Company',
+  DeleteCompanySuccess = '[Company] Delete Company Success',
+  DeleteCompanyFail = '[Company] Delete Company Fail'
 }
 
 export class CreateNewCompany implements Action {
@@ -41,9 +45,30 @@ export class LoadFail implements Action {
   constructor(public payload: string) { }
 }
 
+export class DeleteCompany implements Action {
+  readonly type = CompanyActionTypes.DeleteCompany;
+
+  constructor(public payload: string) { }
+}
+
+export class DeleteCompanySuccess implements Action {
+  readonly type = CompanyActionTypes.DeleteCompanySuccess;
+
+  constructor(public payload: string) { }
+}
+
+export class DeleteCompanyFail implements Action {
+  readonly type = CompanyActionTypes.DeleteCompanyFail;
+
+  constructor(public payload: string) { }
+}
+
 export type CompanyActions = CreateNewCompany |
                              CreateCompanySuccess |
                              CreateCompanyFail |
                              Load |
                              LoadSuccess |
-                             LoadFail;
+                             LoadFail |
+                             DeleteCompany |
+                             DeleteCompanyFail |
+                             DeleteCompanySuccess;

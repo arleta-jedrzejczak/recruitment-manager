@@ -1,4 +1,5 @@
 export interface CompanyInterface {
-  name: string;
-  description: string;
+  id: string;
+  companyName: string;
+  companyDescription: string;
 }

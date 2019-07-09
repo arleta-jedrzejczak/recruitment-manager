@@ -3,7 +3,6 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 
 import { Express, NextFunction, Request, Response } from 'express';
-import { CompanyModel }                             from './src/core/models/company.model';
 import { CompanySchema }                            from './src/core/schemas/company.schema';
 import { Document }                                 from 'mongoose';
 
@@ -37,19 +36,21 @@ app.post('/api/companies', (req: Request, res: Response, next: NextFunction) => 
 });
 
 app.get('/api/companies', (req: Request, res: Response, next: NextFunction) => {
+    CompanySchema.find()
+        .then(
+            (doc: Document[]) => {
+                res.status(200).json(doc);
+            })
+        .catch(
+        () => console.log('Fetching failed!'))
+});
 
-    let testCompanies: CompanyModel[] = [
-        {
-            companyName: 'Test Company',
-            companyDescription: 'Company from backend'
-        },
-        {
-            companyName: 'Test Company 2',
-            companyDescription: 'Company from backend too'
-        }
-    ];
-
-    res.status(200).json(testCompanies);
+app.delete('/api/companies/:id', (req: Request, res: Response, next: NextFunction) => {
+    CompanySchema.deleteOne({_id: req.params.id})
+        .then((response) => console.log(response)
+        ).catch(
+        () => console.log('Deleting failed!'))
+    res.status(200);
 });
 
 export default app;

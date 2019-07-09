@@ -2,15 +2,16 @@
                multi="true">
   <mat-expansion-panel *ngFor="let company of companies; let i = index; trackBy: trackElement">
     <mat-expansion-panel-header>
-      {{ company.name }}
+      {{ company.companyName }}
     </mat-expansion-panel-header>
     <p>
-      {{ company.description }}
+      {{ company.companyDescription }}
     </p>
     <mat-action-row>
       <button mat-button
               color="primary">EDIT</button>
       <button mat-button
+              (click)="onDeleteCompany(company.id)"
               color="warn">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>

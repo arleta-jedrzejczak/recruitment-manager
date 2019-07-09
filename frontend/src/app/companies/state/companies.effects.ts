@@ -22,7 +22,8 @@ export class CompaniesEffects {
   loadedCompanies$: Observable<Action> = this.actions$.pipe(
     ofType(companiesActions.CompanyActionTypes.Load),
     mergeMap((action: companiesActions.Load) => this.companiesService.onGetCompanies().pipe(
-      map((companies: CompanyInterface[]) => new companiesActions.LoadSuccess(companies))
+      map((companies: CompanyInterface[]) => new companiesActions.LoadSuccess(companies)),
+      catchError(err => of(new companiesActions.LoadFail(err)))
     )
   ));
 
@@ -34,6 +35,18 @@ export class CompaniesEffects {
       this.companiesService.onCreateCompany(company).pipe(
         map(newCompany => (new companiesActions.CreateCompanySuccess(newCompany))),
         catchError(err => of(new companiesActions.CreateCompanyFail(err)))
+      )
+    )
+  );
+
+  @Effect()
+  deleteCompany$: Observable<Action> = this.actions$.pipe(
+    ofType(companiesActions.CompanyActionTypes.DeleteCompany),
+    map((action: companiesActions.DeleteCompany) => action.payload),
+    mergeMap((id: string) =>
+      this.companiesService.onDeleteCompany(id).pipe(
+        map(() => (new companiesActions.DeleteCompanySuccess(id))),
+        catchError(err => of(new companiesActions.DeleteCompanyFail(err)))
       )
     )
   );

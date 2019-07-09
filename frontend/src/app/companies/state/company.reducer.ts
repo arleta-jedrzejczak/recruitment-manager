@@ -31,6 +31,7 @@ export const getCompanies = createSelector(
 
 export function reducer(state = initialState, action: CompanyActions): CompanyState {
   switch (action.type) {
+    // CREATE
     case CompanyActionTypes.CreateCompanySuccess:
       return {
         ...state,
@@ -41,7 +42,7 @@ export function reducer(state = initialState, action: CompanyActions): CompanySt
         ...state,
         error: action.payload
       };
-
+    //  LOAD
     case CompanyActionTypes.LoadSuccess:
       return {
         ...state,
@@ -54,6 +55,19 @@ export function reducer(state = initialState, action: CompanyActions): CompanySt
         companies: [],
         error: action.payload
       };
+    //  DELETE
+    case CompanyActionTypes.DeleteCompanySuccess:
+      return {
+        ...state,
+        companies: state.companies.filter(product => product.id !== action.payload),
+        error: ''
+      };
+    case CompanyActionTypes.DeleteCompanyFail:
+      return {
+        ...state,
+        error: action.payload
+      };
+    //  DEFAULT
     default:
       return state;
   }

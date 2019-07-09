@@ -1,10 +1,10 @@
-import { Injectable }              from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { CompanyInterface } from './company.interface';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap }        from 'rxjs/operators';
+import { catchError, map }        from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,13 +18,28 @@ export class CompaniesService {
   }
 
   onGetCompanies(): Observable<CompanyInterface[]> {
-    return this.httpClient.get<CompanyInterface[]>(CompaniesService.COMPANIES_URL).pipe(
+    return this.httpClient.get<any>(CompaniesService.COMPANIES_URL).pipe(
+      map((responseList) => {
+        return responseList.map((response: any) => {
+          return {
+            companyName: response.companyName,
+            companyDescription: response.companyDescription,
+            id: response._id
+          };
+        });
+      }),
       catchError(this.onHandleError)
     );
   }
 
   onCreateCompany(company: CompanyInterface): Observable<CompanyInterface> {
     return this.httpClient.post<CompanyInterface>(CompaniesService.COMPANIES_URL, company).pipe(
+      catchError(this.onHandleError)
+    );
+  }
+
+  onDeleteCompany(id: string): Observable<any> {
+    return this.httpClient.delete<CompanyInterface>(`${CompaniesService.COMPANIES_URL}/${id}`).pipe(
       catchError(this.onHandleError)
     );
   }
