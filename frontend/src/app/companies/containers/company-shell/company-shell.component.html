@@ -1,0 +1,7 @@
+<app-company-create
+  (onAddNewCompanyEvent)="onAddNewCompany($event)">
+</app-company-create>
+<app-company-list
+  (onDeleteCompanyEvent)="onDeleteCompany($event)"
+  [companies]="companies$ | async">
+</app-company-list>

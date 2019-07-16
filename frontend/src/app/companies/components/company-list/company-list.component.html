@@ -1,6 +1,6 @@
 <mat-accordion *ngIf="companies.length; else noCompanies"
                multi="true">
-  <mat-expansion-panel *ngFor="let company of companies; let i = index; trackBy: trackElement">
+  <mat-expansion-panel *ngFor="let company of companies; let i = index">
     <mat-expansion-panel-header>
       {{ company.companyName }}
     </mat-expansion-panel-header>

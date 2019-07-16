@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators }      from '@angular/forms';
 
-import { Store } from '@ngrx/store';
-
-import * as fromCompany from '../state/company.reducer';
-import * as productActions from '../state/company.actions';
+import { CompanyInterface } from '../../company.interface';
 
 @Component({
   selector: 'app-company-create',
@@ -13,9 +10,9 @@ import * as productActions from '../state/company.actions';
 })
 export class CompanyCreateComponent implements OnInit {
 
-  companiesForm: FormGroup;
+  @Output() onAddNewCompanyEvent: EventEmitter<CompanyInterface> = new EventEmitter<CompanyInterface>();
 
-  constructor(private store: Store<fromCompany.State>) { }
+  companiesForm: FormGroup;
 
   ngOnInit(): void {
     this.companiesForm = new FormGroup({
@@ -25,8 +22,7 @@ export class CompanyCreateComponent implements OnInit {
   }
 
   onAddNewCompany(): void {
-    this.store.dispatch(new productActions.CreateNewCompany(this.companiesForm.value));
+    this.onAddNewCompanyEvent.emit(this.companiesForm.value);
     // TODO: Add clearing values after add new company without validation conflict
   }
-
 }
