@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators }      from '@angular/forms';
-
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyInterface } from '../../company.interface';
+import { CompaniesService } from '../../companies.service';
 
 @Component({
   selector: 'app-company-create',
@@ -14,6 +14,14 @@ export class CompanyCreateComponent implements OnInit {
 
   companiesForm: FormGroup;
 
+  get companyName(): AbstractControl {
+    return this.companiesForm.get(CompaniesService.COMPANY_NAME);
+  }
+
+  get companyDescription(): AbstractControl {
+    return this.companiesForm.get(CompaniesService.COMPANY_DESCRIPTION);
+  }
+
   ngOnInit(): void {
     this.companiesForm = new FormGroup({
       'companyName': new FormControl(null, Validators.required),
@@ -23,6 +31,8 @@ export class CompanyCreateComponent implements OnInit {
 
   onAddNewCompany(): void {
     this.onAddNewCompanyEvent.emit(this.companiesForm.value);
-    // TODO: Add clearing values after add new company without validation conflict
+    this.companiesForm.reset();
+    this.companiesForm.markAsUntouched();
+    this.companiesForm.markAsPristine();
   }
 }

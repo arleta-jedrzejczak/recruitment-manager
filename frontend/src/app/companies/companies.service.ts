@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { CompanyInterface } from './company.interface';
-
 import { Observable, throwError } from 'rxjs';
-import { catchError, map }        from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,7 +10,10 @@ import { catchError, map }        from 'rxjs/operators';
 })
 export class CompaniesService {
 
-  private static readonly COMPANIES_URL = 'http://localhost:3000/api/companies';
+  static readonly COMPANY_NAME: string = 'companyName';
+  static readonly COMPANY_DESCRIPTION: string = 'companyDescription';
+
+  private static readonly COMPANIES_URL: string = 'http://localhost:3000/api/companies';
 
   constructor(private httpClient: HttpClient) {
   }

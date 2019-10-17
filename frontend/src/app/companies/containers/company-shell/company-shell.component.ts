@@ -1,13 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
 import * as companiesActions from '../../state/company.actions';
-import * as fromCompany      from '../../state/company.reducer';
-
-
+import * as fromCompany from '../../state/company.reducer';
 import { select, Store } from '@ngrx/store';
-
 import { Observable } from 'rxjs';
-
 import { CompanyInterface } from '../../company.interface';
 
 @Component({
